@@ -1,4 +1,4 @@
-#' Search for most interesting projection along random geodesics.
+' Search for most interesting projection along random geodesics.
 #'
 #' This is a novel method for finding more interesting projections for the 
 #' guided tour.  It works by first taking a small step in \code{n} random 
@@ -85,7 +85,7 @@ find_best_dir <- function(old, index, dist = 0.01, tries = 5) {
 
     max(index(forward), index(backward))
   }
-  scores <- sapply(bases, score)
+  scores <- as.numeric(lapply(bases, score))
   bases[[which.max(scores)]]
 }
 

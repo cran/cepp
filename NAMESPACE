@@ -1,3 +1,4 @@
-export(ALPHA, METHOD, basis_random, basis_nearby, pp.2, pp.3, evaluator.2, evaluator.3, caller, search_geodesic)
-
-import(trust,randtoolbox)
+export(basis_random, basis_nearby, pp, evaluator, caller, search_geodesic, ecdf.indices)
+importFrom(stats, integrate, median, optimize, pnorm, princomp, rnorm, uniroot)
+importFrom(randtoolbox, sobol)
+import(trust)

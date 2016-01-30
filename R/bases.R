@@ -4,12 +4,14 @@ basis_random <- function (n, d = 2)
     orthonormalise(mvn)
 }
 
-basis_nearby <- function (current, alpha = ALPHA, method = METHOD) 
+basis_nearby <- function(alpha = 0.75, method = 'geodesic', d = 2)
 {
-    current <- matrix(current, ncol = 2)
-    method <- match.arg(method, c("linear", "geodesic"))
-    new <- basis_random(nrow(current), ncol(current))
-    switch(method,
-		linear = as.numeric(orthonormalise((1 - alpha) * current + alpha * new)), 
-		geodesic = as.numeric(step_fraction(geodesic_info(current, new), alpha)))
+    function (current)
+        {
+            current <- matrix(current, ncol = d)
+            new <- basis_random(nrow(current), d)
+            switch(method,
+                   linear = orthonormalise((1 - alpha) * current + alpha * new),
+                   geodesic = step_fraction(geodesic_info(current, new), alpha))
+        }
 }

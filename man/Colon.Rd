@@ -34,7 +34,7 @@ downloaded from
 \references{
 Alon, U. and Barkai, N. and Notterman, D.A. and Gish, K. and Ybarra, S. and Mack, D. and Levine, A.J. (1999).
 Broad patterns of gene expression revealed by clustering analysis of tumor and normal colon tissues probed by oligonucleotide arrays,
-Proc. Natl. Acad. Sci. USA,\bold{96}(12), 6745--6750.
+Proc. Natl. Acad. Sci. USA, 96(12), 6745--6750.
 }
 
 
@@ -44,9 +44,10 @@ data(Colon)
 dim(Colon$X)
 norm <- Colon$X[Colon$Y == 1,]
 tumor <- Colon$X[Colon$Y == 2,]
-gene1 <- pp.2(r=2,n=50,oth=tumor,data=norm)
+gene1 <- pp(r=2,n=50,oth=tumor,data=norm,k=2)
 F1  <- basis_random(2000)
-t1  <- caller(start=F1 ,index=gene1,n=rep(3,5),bases=5)
+gene1(F1)
+t1  <- caller(start=F1, index=gene1, n=rep(3,5), bases=5)
 }
 
 

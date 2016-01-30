@@ -1,14 +1,12 @@
 \name{pp}
-\alias{pp.2}
-\alias{pp.3}
+\alias{pp}
 
 \title{Creates the projection pursuit function.}
 
 \description{These functions encapsulate everything, that is, the data, the benchmark and the index parameters, needed to compute the projection index.}
 
 \usage{
-pp.2(r = 1, n, data, oth,given_norm=penorms2)
-pp.3(r = 1, n, data, oth,given_norm=penorms3)
+pp(r = 0.8, n, data, oth, k)
 }
 
 \arguments{
@@ -19,12 +17,12 @@ pp.3(r = 1, n, data, oth,given_norm=penorms3)
   \item{data}{The data for which structure needs to be found.}
 
   \item{oth}{The benchmark dataset.}
-
-  \item{given_norm}{Determines how the norm of the integrand is computed. By default, set to the L2 norm (\code{penorms2} for 2-D projections and \code{penorms3} for 3-D projections) You may set it any other norm function. Note that even ordered norms are rotationally invariant.}
+  
+  \item{k}{The target dimension.}
 }
 
 \details{
-\code{pp.2} is for 2-D projection pursuit, while \code{pp.3} is for 3-D projection pursuit.
+\code{pp} is for projection pursuit.
 }
 
 \value{
@@ -38,22 +36,23 @@ The actual index function, which takes a single matrix argument, and returns the
 ##Or using the MINSTD generator
 randu <- as.matrix(randu)
 
-setSeed(570)
-w <- congruRand(1200)
-dim(w) <- c(3,400)
+randtoolbox::setSeed(570)
+w <- randtoolbox::congruRand(1200)
+dim(w) <- c(3, 400)
 w <- t(w)
 
 m <- 'geodesic'
 a <- 0.50
 
-ranif1 <- pp.2(r=1,n=50,data=randu,oth=w)
+ranif1 <- pp(r=1, n=50, data=randu, oth=w, k=2)
 
 set.seed(50)
 F1 <- basis_random(3)
-o1 <- optim(par=F1,fn=ranif1,gr=basis_nearby,method='SANN',control=list(fnscale=-1,maxit=200,trace=1))
+o1 <- optim(par=F1, fn=ranif1, gr=basis_nearby(), method='SANN',
+            control=list(fnscale=-1, maxit=100, trace=1))
 plot(randu \%*\% o1$par)
 
 ##How accurate are the values?
-ranif1hi <- pp.2(r=1,n=500,data=randu,oth=w)
+ranif1hi <- pp(r=1, n=500, data=randu, oth=w, k=2)
 ranif1hi(o1$par)
 }

@@ -1,0 +1,21 @@
+Version 1.7
+  Add ecdf indices to the package and their man pages to the package
+Version 1.6
+  Modified basis_nearby function so that ALPHA and METHOD parameters can be modified
+Version 1.5
+  Added Methods to change constants ALPHA and METHOD
+  Changed Namespace Declarations
+  Removed 'require' calls from examples
+  General Clean Up
+Version 1.4
+  Reverted back to not squaring
+  Added support for parallel
+Version 1.3
+  Fixed bug in caller function
+Version 1.2
+  Changed Index Form (now squaring)
+Version 1.1
+  Changed Index calculation so that it is now available in any dimension
+  Speeded up index calculation
+Version 1.0
+  First Release on CRAN
